@@ -1,0 +1,81 @@
+package Rules;
+
+import com.ns.check.Model.UserDetails;
+import com.ns.check.Model.ResultantModel;
+
+global Float ccAmount;
+global Float orderAmount;
+global ResultantModel rm;
+
+
+rule "other"
+salience 3
+when
+eval(true)
+then
+System.out.println("Hi this is from other method");
+end
+
+
+rule "Bonus for  novus by self purchase"
+    salience 1
+ //   agenda-group "1"
+        when
+            userDetailObject:UserDetails(level==1 && nextLevel==0)
+        then
+            System.out.println("The Novus self purchase");
+end
+
+//Assistant Supervisor
+
+rule "Bonus for assistant supervisor for his self purchase"
+    salience 1
+  //  agenda-group "2"
+        when
+            userDetailObject:UserDetails(level==2 && nextLevel==0)
+        then
+            System.out.println("Self Purchase By Assistant Supervisor");
+end
+
+// Supervisor
+
+rule "Bonus for supervisor for his self purchase"
+    salience 1
+  //  agenda-group "3"
+        when
+            userDetailObject:UserDetails(level==3 && nextLevel==0)
+        then
+             System.out.println("Self Purchase By Supervisor");
+
+end
+
+
+//Assistant Manager
+
+rule "Bonus for Assistant manager for his self purchase"
+    salience 1
+ //   agenda-group "4"
+        when
+            userDetailObject:UserDetails(level==4 && nextLevel==0)
+        then
+             System.out.println("Self Purchase By Assistant Manager");
+
+end
+
+
+
+//Manager
+
+rule "self purchase by manager"
+    salience 1
+  //  agenda-group "5"
+        when
+            userDetailObject:UserDetails(level==5 && nextLevel==0)
+        then
+            System.out.println("Self Purchase By Manager");
+
+end
+
+
+
+
